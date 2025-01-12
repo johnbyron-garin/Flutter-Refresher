@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/store.dart';
 import 'package:provider/provider.dart';
 import 'auth/login_or_register.dart';
 import 'view_models/home_view_model.dart';
@@ -10,17 +11,11 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => Store()),
       ],
       child: const MyApp(),
     ),
   );
-
-  // runApp(
-  //   ChangeNotifierProvider(
-  //     create: (context) => ThemeProvider(),
-  //     child: const MyApp(),
-  //   ),
-  // );
 }
 
 class MyApp extends StatelessWidget {

@@ -4,10 +4,11 @@ import '../repository/recipe_repository.dart';
 
 class HomeViewModel extends ChangeNotifier {
   List<Recipe> _recipes = [];
-  bool _isLoading = true;
+  bool _isLoadingRecipes = true;
 
   List<Recipe> get recipes => _recipes;
-  bool get isLoading => _isLoading;
+
+  bool get isLoadingRecipes => _isLoadingRecipes;
 
   HomeViewModel() {
     fetchRecipes();
@@ -15,7 +16,7 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<void> fetchRecipes() async {
     _recipes = await RecipeRepository().getRecipes();
-    _isLoading = false;
+    _isLoadingRecipes = false;
     notifyListeners();
   }
 }
