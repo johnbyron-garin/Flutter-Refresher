@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/store.dart';
 import 'package:provider/provider.dart';
 import 'auth/login_or_register.dart';
-import 'view_models/home_view_model.dart';
 import 'themes/theme_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => Store()),
       ],

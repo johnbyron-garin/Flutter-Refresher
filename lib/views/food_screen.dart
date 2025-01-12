@@ -3,12 +3,12 @@ import 'package:flutter_application_1/models/store.dart';
 import 'package:provider/provider.dart';
 
 import '../models/food.dart';
-import 'my_button.dart';
+import '../widgets/my_button.dart';
 
-class MyFoodPage extends StatefulWidget {
+class FoodScreen extends StatefulWidget {
   final Food food;
   final Map<Addon, bool> selectedAddons = {};
-  MyFoodPage({
+  FoodScreen({
     super.key,
     required this.food,
   }) {
@@ -18,10 +18,10 @@ class MyFoodPage extends StatefulWidget {
   }
 
   @override
-  State<MyFoodPage> createState() => _MyFoodPageState();
+  State<FoodScreen> createState() => _FoodScreenState();
 }
 
-class _MyFoodPageState extends State<MyFoodPage> {
+class _FoodScreenState extends State<FoodScreen> {
   void addToCart(Food food, Map<Addon, bool> selectedAddons) {
     Navigator.pop(context);
     List<Addon> addons = [];

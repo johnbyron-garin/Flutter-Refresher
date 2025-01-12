@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/my_food_tile.dart';
-import 'package:flutter_application_1/widgets/my_recipe_tile.dart';
 import 'package:flutter_application_1/widgets/my_tab_bar.dart';
 import 'package:provider/provider.dart';
 import '../models/food.dart';
 import '../models/store.dart';
-import '../view_models/home_view_model.dart';
 import '../widgets/my_current_location.dart';
 import '../widgets/my_description_box.dart';
 import '../widgets/my_drawer.dart';
-import '../widgets/my_food_page.dart';
+import 'food_screen.dart';
 import '../widgets/my_sliver_app_bar.dart';
-import '../widgets/recipe_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen>
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => MyFoodPage(
+                builder: (context) => FoodScreen(
                   food: food,
                 ),
               ),
