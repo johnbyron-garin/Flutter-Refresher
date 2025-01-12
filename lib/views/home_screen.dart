@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../view_models/home_view_model.dart';
-import 'widgets/recipe_card.dart';
+import '../widgets/my_drawer.dart';
+import '../widgets/recipe_card.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.restaurant_menu),
-            SizedBox(width: 10),
-            Text('Food Recipe'),
-          ],
-        ),
+        title: const Text('Home'),
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
+      drawer: const MyDrawer(),
       body: ChangeNotifierProvider(
         create: (_) => HomeViewModel(),
         child: Consumer<HomeViewModel>(
