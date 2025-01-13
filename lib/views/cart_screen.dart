@@ -3,8 +3,8 @@ import 'package:flutter_application_1/widgets/my_cart_tile.dart';
 import 'package:provider/provider.dart';
 
 import '../models/store.dart';
-import '../services/database/firestore.dart';
 import '../widgets/my_button.dart';
+import 'payment_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -78,8 +78,13 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             MyButton(
-              onTap: () {},
-              text: "Checkout",
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PaymentScreen(),
+                ),
+              ),
+              text: "Go to Checkout",
             ),
             const SizedBox(height: 25),
           ],

@@ -37,7 +37,7 @@ class SettingsScreen extends StatelessWidget {
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
-                  CupertinoSwitch(
+                  Switch(
                     value: Provider.of<ThemeProvider>(context, listen: false)
                         .isDarkMode,
                     onChanged: (value) =>

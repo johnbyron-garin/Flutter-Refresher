@@ -41,6 +41,8 @@ dependencies:
   firebase_core: ^3.10.0
   firebase_auth: ^5.4.0
   cloud_firestore: ^5.6.1
+  flutter_credit_card: ^4.0.1
+  intl: ^0.18.0 # or the latest version available
 
 dev_dependencies:
   flutter_test:
