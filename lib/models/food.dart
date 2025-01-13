@@ -22,11 +22,18 @@ enum FoodCategory {
 }
 
 class Addon {
-  String name;
-  double price;
+  final String name;
+  final double price;
 
   Addon({
     required this.name,
     required this.price,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'price': price,
+    };
+  }
 }

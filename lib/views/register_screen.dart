@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../services/auth/auth_service.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_textfield.dart';
 
@@ -20,6 +21,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+
+  void register() async {
+    final _authService = AuthService();
+
+    if (passwordController.text == confirmPasswordController.text) {
+      try {
+        await _authService.signUpWithEmailPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              e.toString(),
+            ),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            "Passwords don't match!",
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             const SizedBox(height: 10),
             MyButton(
-              onTap: () {},
+              onTap: register,
               text: "Sign Up",
             ),
             const SizedBox(height: 25),

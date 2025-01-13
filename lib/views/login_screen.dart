@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/my_button.dart';
 import 'package:flutter_application_1/widgets/my_textfield.dart';
-
-import 'home_screen.dart';
+import '../services/auth/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   final void Function()? onTap;
@@ -20,15 +19,24 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void login() {
-    // fill out auth
+  void login() async {
+    final _authService = AuthService();
 
-    // navigate to home page
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        ));
+    try {
+      await _authService.signInWithEmailPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
   }
 
   @override

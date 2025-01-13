@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "939584464679",
+    "project_id": "flutter-refresher-b7fae",
+    "storage_bucket": "flutter-refresher-b7fae.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939584464679:android:ae8c206f10bf1179d8eb02",
+        "android_client_info": {
+          "package_name": "com.jbgarin.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZfVARiUGoCcaq7_OUYIwjpcLskD5NLDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
