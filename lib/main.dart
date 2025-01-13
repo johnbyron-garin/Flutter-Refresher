@@ -4,7 +4,6 @@ import 'package:flutter_application_1/firebase_options.dart';
 import 'package:flutter_application_1/models/store.dart';
 import 'package:provider/provider.dart';
 import 'services/auth/auth_gate.dart';
-import 'services/auth/login_or_register.dart';
 import 'themes/theme_provider.dart';
 
 void main() async {
