@@ -142,6 +142,7 @@ class Store extends ChangeNotifier {
   // GETTERS
 
   List<Food> get items => _items;
+  List<CartItem> get cart => _cart;
 
   // OPERATIONS
 
