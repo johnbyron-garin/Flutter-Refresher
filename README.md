@@ -7,7 +7,6 @@ Tara Kain is a personal mobile application project that allows users to browse a
 - **Browse Menu**: Explore a variety of Filipino cuisines with detailed information, including prices and available add-ons.
 - **Add to Cart**: Select and add dishes to your cart for a seamless ordering experience.
 - **Simulated Payment**: Experience a simulated credit card payment process with confirmation receipts.
-- **Order Tracking**: Monitor your ongoing food delivery in real-time.
 - **Dark/Light Mode**: Switch between dark and light themes to suit your preference.
 
 ## Purpose
@@ -28,26 +27,26 @@ Through this project, I was able to:
 Here are some screenshots of the application:
 
 1. Main Menu:
-   ![Login Page](lib/documentation/1.png)
+- ![Login Page](lib/documentation/1.png)
 
 2. Food Details:
-   ![Food Details](lib/documentation/2.png)
-   ![Food Details](lib/documentation/3.png)
+- ![Food Details](lib/documentation/2.png)
+- ![Food Details](lib/documentation/3.png)
 
 3. Drawer:
-   ![Drawer](lib/documentation/4.png)
+- ![Drawer](lib/documentation/4.png)
 
 4. Cart Summary:
-   ![Cart Summary](lib/documentation/5.png)
+- ![Cart Summary](lib/documentation/5.png)
 
 5. Payment Simulation:
-   ![Payment Simulation](lib/documentation/6.png)
+- ![Payment Simulation](lib/documentation/6.png)
 
 6. Receipt:
-   ![Receipt](lib/documentation/7.png)
+- ![Receipt](lib/documentation/7.png)
 
 7. Dark Mode:
-   ![Dark Mode](lib/documentation/8.png)
+- ![Dark Mode](lib/documentation/8.png)
 
 ## Technologies Used
 
