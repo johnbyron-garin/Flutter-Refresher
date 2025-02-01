@@ -77,15 +77,16 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
             ),
-            MyButton(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const PaymentScreen(),
+            if (userCart.isNotEmpty)
+              MyButton(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PaymentScreen(),
+                  ),
                 ),
+                text: "Go to Checkout",
               ),
-              text: "Go to Checkout",
-            ),
             const SizedBox(height: 25),
           ],
         ),
