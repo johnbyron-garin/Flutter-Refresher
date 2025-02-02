@@ -62,7 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.lock_open_rounded,
+              Icons.food_bank,
               size: 72,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
