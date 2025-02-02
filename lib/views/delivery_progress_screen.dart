@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../models/store.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_receipt.dart';
-import 'home_screen.dart';
 
 class DeliveryProgressScreen extends StatefulWidget {
   const DeliveryProgressScreen({super.key});
@@ -35,27 +34,23 @@ class _DeliveryProgressScreenState extends State<DeliveryProgressScreen> {
         automaticallyImplyLeading: false,
       ),
       bottomNavigationBar: _buildBottomNavigationBar(context),
-      body: Column(
-        children: [
-          const MyReceipt(),
-          MyButton(
-            onTap: () {
-              // Clear the cart
-              context.read<Store>().clearCart();
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const MyReceipt(),
+            MyButton(
+              onTap: () {
+                // Clear the cart
+                context.read<Store>().clearCart();
 
-              // Navigate to Home
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-                (route) => false,
-              );
-            },
-            text: "Go to Home",
-          ),
-          const SizedBox(height: 20),
-        ],
+                // Navigate to Home
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+              text: "Go to Home",
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
