@@ -3,12 +3,12 @@ import 'package:flutter_application_1/widgets/my_food_tile.dart';
 import 'package:flutter_application_1/widgets/my_tab_bar.dart';
 import 'package:provider/provider.dart';
 import '../models/food.dart';
-import '../models/store.dart';
 import '../widgets/my_current_location.dart';
 import '../widgets/my_description_box.dart';
 import '../widgets/my_drawer.dart';
 import 'food_screen.dart';
 import '../widgets/my_sliver_app_bar.dart';
+import '../viewmodels/home_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,107 +19,77 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late HomeViewModel _viewModel;
 
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(length: FoodCategory.values.length, vsync: this);
+    _viewModel = HomeViewModel();
+    _viewModel
+        .init(TabController(length: FoodCategory.values.length, vsync: this));
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _viewModel.tabController.dispose();
     super.dispose();
-  }
-
-  List<Food> _filterItemsByCategory(FoodCategory type, List<Food> items) {
-    return items.where((element) => element.type == type).toList();
-  }
-
-  List<Widget> getFoodInThisCategory(List<Food> items) {
-    return FoodCategory.values.map((type) {
-      List<Food> filteredItems = _filterItemsByCategory(type, items);
-      return ListView.builder(
-        itemCount: filteredItems.length,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          final food = filteredItems[index];
-          return MyFoodTile(
-            food: food,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => FoodScreen(
-                  food: food,
-                ),
-              ),
-            ),
-          );
-        },
-      );
-    }).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const MyDrawer(),
-      body: NestedScrollView(
+    return ChangeNotifierProvider<HomeViewModel>(
+      create: (_) => _viewModel,
+      child: Scaffold(
+        drawer: const MyDrawer(),
+        body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                MySliverAppBar(
-                  title: MyTabBar(
-                    tabController: _tabController,
+            MySliverAppBar(
+              title: MyTabBar(
+                tabController: _viewModel.tabController,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Divider(
+                    indent: 25,
+                    endIndent: 25,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Divider(
-                        indent: 25,
-                        endIndent: 25,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      const MyCurrentLocation(),
-                      const MyDescriptionBox(),
-                    ],
-                  ),
-                ),
-              ],
-          body: Consumer<Store>(
-            builder: (context, store, child) => TabBarView(
-              controller: _tabController,
-              children: getFoodInThisCategory(store.items),
+                  const MyCurrentLocation(),
+                  const MyDescriptionBox(),
+                ],
+              ),
             ),
-          )
-
-          // // recipe
-          // body: Consumer<HomeViewModel>(
-          //   builder: (context, viewModel, child) {
-          //     if (viewModel.isLoadingRecipes) {
-          //       return const Center(
-          //         child: CircularProgressIndicator(),
-          //       );
-          //     } else {
-          //       return TabBarView(
-          //         controller: _tabController,
-          //         children: [
-          //           ListView.builder(
-          //             itemCount: viewModel.recipes.length,
-          //             itemBuilder: (context, index) {
-          //               final recipe = viewModel.recipes[index];
-          //               return MyRecipeTile(
-          //                 recipe: recipe,
-          //                 onTap: () {},
-          //               );
-          //             },
-          //           ),
-          //         ],
-          //       );
-          //     }
-          //   },
-          // ),
+          ],
+          body: Consumer<HomeViewModel>(
+            builder: (context, viewModel, child) {
+              return TabBarView(
+                controller: viewModel.tabController,
+                children: FoodCategory.values.map((category) {
+                  final foods = viewModel.getFoodsByCategory(category);
+                  return ListView.builder(
+                    itemCount: foods.length,
+                    itemBuilder: (context, index) {
+                      final food = foods[index];
+                      return MyFoodTile(
+                        food: food,
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodScreen(
+                              food: food,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
+              );
+            },
           ),
+        ),
+      ),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/database/firestore.dart';
 import 'package:provider/provider.dart';
 
-import '../models/store.dart';
+import '../services/database/firestore.dart';
+import '../viewmodels/cart_view_model.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_receipt.dart';
 
@@ -21,7 +21,7 @@ class _DeliveryProgressScreenState extends State<DeliveryProgressScreen> {
   void initState() {
     super.initState();
 
-    String receipt = context.read<Store>().displayCarReceipt();
+    String receipt = context.read<CartViewModel>().displayCartReceipt();
     db.saveCartItemsToFirestore(receipt);
   }
 
@@ -41,7 +41,7 @@ class _DeliveryProgressScreenState extends State<DeliveryProgressScreen> {
             MyButton(
               onTap: () {
                 // Clear the cart
-                context.read<Store>().clearCart();
+                context.read<CartViewModel>().clearCart();
 
                 // Navigate to Home
                 Navigator.of(context).popUntil((route) => route.isFirst);

@@ -1,10 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/firebase_options.dart';
-import 'package:flutter_application_1/models/store.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 import 'services/auth/auth_gate.dart';
 import 'themes/theme_provider.dart';
+import 'viewmodels/cart_view_model.dart';
+import 'viewmodels/home_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => Store()),
+        ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(create: (_) => CartViewModel()),
       ],
       child: const MyApp(),
     ),

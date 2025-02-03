@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/store.dart';
 import 'package:provider/provider.dart';
 
 import '../models/food.dart';
+import '../viewmodels/cart_view_model.dart';
 import '../widgets/my_button.dart';
 
 class FoodScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _FoodScreenState extends State<FoodScreen> {
       }
     }
 
-    context.read<Store>().addToCart(food, addons);
+    context.read<CartViewModel>().addToCart(food, addons);
   }
 
   @override

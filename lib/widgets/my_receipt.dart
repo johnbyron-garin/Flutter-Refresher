@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/store.dart';
+import '../viewmodels/cart_view_model.dart';
 
 class MyReceipt extends StatelessWidget {
   const MyReceipt({super.key});
@@ -24,9 +24,9 @@ class MyReceipt extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.all(25),
-              child: Consumer<Store>(
-                builder: (context, store, child) => Text(
-                  store.displayCarReceipt(),
+              child: Consumer<CartViewModel>(
+                builder: (context, cartViewModel, child) => Text(
+                  cartViewModel.displayCartReceipt(),
                 ),
               ),
             ),
