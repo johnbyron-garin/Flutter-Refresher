@@ -79,7 +79,7 @@ class CartViewModel extends ChangeNotifier {
 
     for (final cartItem in _cart) {
       receipt.writeln(
-          "${cartItem.quantity} x ${cartItem.food.name} = ${cartItem.quantity} x ${_formatPrice(cartItem.food.price)}");
+          "${cartItem.quantity} x ${cartItem.food.name} = ${_formatPrice(cartItem.food.price * cartItem.quantity)}");
       if (cartItem.selectedAddons.isNotEmpty) {
         receipt.writeln("Addons: ${_formatAddons(cartItem.selectedAddons)}");
       }
@@ -94,12 +94,12 @@ class CartViewModel extends ChangeNotifier {
   }
 
   String _formatPrice(double price) {
-    return "P\${price.toStringAsFixed(2)}";
+    return "P${price.toStringAsFixed(2)}";
   }
 
   String _formatAddons(List<Addon> addons) {
     return addons
-        .map((addon) => "\${addon.name} (\${_formatPrice(addon.price)})")
+        .map((addon) => "${addon.name} (${_formatPrice(addon.price)})")
         .join(", ");
   }
 }
